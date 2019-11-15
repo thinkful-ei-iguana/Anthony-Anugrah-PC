@@ -2,15 +2,9 @@ import React from "react";
 import slugify from "slugify";
 
 export default class PartPicker extends React.Component {
-  updateFeature = (feature, newValue) => {
-    const selected = Object.assign({}, this.props.selected);
-    selected[feature] = newValue;
-    console.log(this.props.selected);
-    this.setState({
-      selected
-    });
-  };
   render() {
+    console.log(this.props);
+
     const features = Object.keys(this.props.features).map((feature, idx) => {
       const featureHash = feature + "-" + idx;
       const options = this.props.features[feature].map(item => {
@@ -23,7 +17,7 @@ export default class PartPicker extends React.Component {
               className="feature__option"
               name={slugify(feature)}
               checked={item.name === this.props.selected[feature].name}
-              onChange={e => this.updateFeature(feature, item)}
+              onChange={e => this.props.updateFeature(feature, item)}
             />
             <label htmlFor={itemHash} className="feature__label">
               {item.name} ({this.props.currency.format(item.cost)})

@@ -37,6 +37,15 @@ class App extends Component {
     }
   };
 
+  updateFeature = (feature, newValue) => {
+    const selected = Object.assign({}, this.state.selected);
+    selected[feature] = newValue;
+
+    this.setState({
+      selected
+    });
+  };
+
   //added to part picker
 
   //items
@@ -51,6 +60,7 @@ class App extends Component {
             {...this.state}
             currency={USCurrencyFormat}
             features={this.props.features}
+            updateFeature={this.updateFeature}
           />
           <section className="main__summary">
             <ShoppingCart
